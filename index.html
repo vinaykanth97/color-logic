@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Logics 1</title>
+    <style>
+      .boxes {
+        width: 100px;
+        height: 100px;
+      }
+      .wrapper {
+        max-width: 45%;
+        display: flex;
+        flex-wrap: wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <input
+      type="number"
+      name="color"
+      id="color-input"
+      placeholder="Enter number of colors"
+    />
+    <div class="wrapper"></div>
+    <script>
+      let colorWrapper = document.querySelector(".wrapper");
+      let input = document.getElementById("color-input");
+      let colors = ["red", "coral", "blue", "green", "black"];
+
+      input.addEventListener("input", (e) => {
+        if (e.data === null || e.target.value > 9) {
+          for (const x of colorWrapper.children) {
+            setTimeout(() => {
+              x.remove();
+            }, 10);
+          }
+        }
+        let inputNumb = parseInt(e.target.value);
+
+        for (let i = 0; i < inputNumb; i++) {
+          let eleColor = document.createElement("div");
+          eleColor.style.backgroundColor = colors[i % colors.length];
+          eleColor.classList.add("boxes");
+          colorWrapper.appendChild(eleColor);
+        }
+      });
+    </script>
+  </body>
+</html>
